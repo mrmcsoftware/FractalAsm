@@ -1,9 +1,9 @@
 x86 Inline Assembly Mandelbrot and Julia Fractal Program (Windows)
 ==================================================================
 
-<table cellpadding=0 border=0>
-<tr><td><img src="fractal1.png" width=449></td><td><img src="fractal2.png" width=449></td></tr>
-<tr><td><img src="fractal3.png" width=449></td><td><img src="fractal4.png" width=449></td></tr>
+<table>
+<tr><td><img src="fractal1.png" width=396></td><td><img src="fractal2.png" width=396></td></tr>
+<tr><td><img src="fractal3.png" width=396></td><td><img src="fractal4.png" width=396></td></tr>
 </table>
  
 ## Introduction
