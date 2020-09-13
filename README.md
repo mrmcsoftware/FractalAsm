@@ -1,12 +1,10 @@
 x86 Inline Assembly Mandelbrot and Julia Fractal Program (Windows)
 ==================================================================
 
-<p float="left">
-  <img src="fractal1.png"/>
-  <img src="fractal2.png"/><br>
-  <img src="fractal3.png"/>
-  <img src="fractal4.png"/>
-</p>
+<table>
+<tr><td><img src="fractal1.png"/></td><td><img src="fractal2.png"/></td></tr>
+<tr><td><img src="fractal3.png"/></td><td><img src="fractal4.png"/></td></tr>
+</table>
  
 ## Introduction
 
