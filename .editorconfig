@@ -1,2 +1,3 @@
+[*.{c,h,rc,mak,asm,manifest}]
 indent_style = tab
 indent_size = 4
