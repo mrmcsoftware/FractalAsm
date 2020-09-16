@@ -895,10 +895,10 @@ ChangeBitmap(himg, im);
 int GetFilename(char *str)
 {
 OPENFILENAME fna;
-char path[1024],cwd[256];
+char cwd[MAX_PATH];
 int i;
 
-GetCurrentDirectory(256, cwd);
+GetCurrentDirectory(MAX_PATH, cwd);
 str[0] = '\0';
 memset(&fna, 0, sizeof(OPENFILENAME));
 fna.lStructSize = sizeof(OPENFILENAME);
@@ -919,7 +919,7 @@ return(0);
 SaveImage()
 {
 FILE *fp;
-char str[256];
+char str[MAX_PATH];
 unsigned char *p = im;
 
 if (GetFilename(str)) { return; }
