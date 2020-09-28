@@ -44,6 +44,15 @@ parameters.  BTW, to get images like the ones in my videos, lower the
 Also, right click on the title bar of the main window to get a menu option to
 save the current image to a PPM file.
 
+Most of the keyboard controls can be put on the command-line as if you pressed
+them while the program is running.  For example:
+
+    fractald 3-cd...
+
+would choose Mandelbrot location #3 (3) to be displayed, then Mandelbrot
+location #4 (-), then color cycling enabled (c), then cycling direction
+changed (d), then cycling delta increased three times (.)
+
 ## Building
 
 Windows executables are provided, so there shouldn't be a need to build, but if
@@ -59,6 +68,10 @@ This will make both the double and float versions of the fractal program.
 If you don't want to use makefiles, it should be easy to make a solution file
 for this project (or whatever it will be called in future versions of
 Visual Studio).
+
+## Link to Linux Version
+
+[https://github.com/mrmcsoftware/FractalAsm-Linux](https://github.com/mrmcsoftware/FractalAsm-Linux)
 
 ## Manifest
 

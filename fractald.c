@@ -22,6 +22,7 @@ HWND w = NULL;				/* window */
 HDC hdc, hdcimg = NULL;		/* window DC handle, fractal bitmap DC handle */
 HBITMAP himg = NULL;		/* fractal bitmap handle */
 POINTS pt0, pts, pte;		/* zoom: old point, start point, end point */
+char gcmd[256];				/* command-line argument */
 
 	/* Variables used in assembly part */
 
@@ -990,8 +991,8 @@ HMENU smenu;
 WORD wplow;
 HDC h;
 POINTS pt;
-double ae,be,ae2,be2;
-int dx,dy;
+double ae, be, ae2, be2;
+int dx, dy;
 char str[256];
 
 switch (msg)
@@ -1004,7 +1005,7 @@ switch (msg)
 		smenu = GetSystemMenu(w, 0);
 		InsertMenu(smenu, -1, MF_BYPOSITION|MF_SEPARATOR, 0, 0);
 		InsertMenu(smenu, -1, MF_BYPOSITION|MF_STRING, IDM_SAVE, "Save image as PPM");
-		Choice1();
+		if (strlen(gcmd) == 0) { Choice1(); } // start with first location
 		break;
 	case WM_PAINT:
 		h = BeginPaint(w, &paints);
@@ -1199,7 +1200,7 @@ return(0L);
 
 int PASCAL WinMain(HINSTANCE hi, HINSTANCE hpi, LPSTR cmd, int scmd)
 {
-int i;
+int i, l, c;
 MSG msg;
 DWORD dwStyle = WS_OVERLAPPEDWINDOW;
 RECT rc={0, 0, 512, 512};
@@ -1215,24 +1216,53 @@ wc.lpszClassName = "FractClass";
 if (!RegisterClass(&wc)) { QuitProgram(); }
 hin=hi;
 AdjustWindowRect(&rc, dwStyle, FALSE);
+strcpy(gcmd, cmd);
 w = CreateWindow("FractClass", "Mark's x86 Asm. Fractals", dwStyle, 50, 50,
 	(rc.right-rc.left), (rc.bottom-rc.top), NULL, NULL, hi, NULL);
 if (!w) { QuitProgram(); }
 ShowWindow(w, scmd);
 UpdateWindow(w);
-for (i=0; i<strlen(cmd); i++) { SendMessage(w, WM_KEYDOWN, cmd[i], 0); }
+l = strlen(cmd);
+if (l > 0)
+	{
+	// fake keypresses so user can initialize the way they want
+	for (i=0; i<l; i++)
+		{
+		// handle cases that don't have ASCII equivalent WM_KEYDOWN events
+		switch (cmd[i])
+			{
+			case ',': c = 188; break;
+			case '.': c = 190; break;
+			case '-': c = 189; break;
+			default: c = toupper(cmd[i]);
+			}
+		SendMessage(w, WM_KEYDOWN, c, 0);
+		}
+	}
 while (1)
 	{
-	if ((cycle)&&(!pause)) { Cycle(); } if (speed > 1) { Sleep(speed); }
-	if (PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE) == TRUE)
+    /* trying to be nice on CPU - only continuously run while loop when
+       color cycling, otherwise, use GetMessage which waits for event */
+	if ((cycle) && (!pause))
 		{
-		if (GetMessage(&msg, NULL, 0, 0))
+		Cycle();
+		if (speed > 1) { Sleep(speed); }
+		if (PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE) == TRUE)
 			{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
+			if (GetMessage(&msg, NULL, 0, 0))
+				{
+				TranslateMessage(&msg);
+				DispatchMessage(&msg);
+				}
+			else { return(TRUE); }
 			}
-		else { return(TRUE); }
 		}
+	else if (GetMessage(&msg, NULL, 0, 0))
+		{
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+		}
+	else { return(TRUE); }
 	}
 QuitProgram();
 }
