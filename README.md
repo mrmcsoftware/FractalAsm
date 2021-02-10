@@ -31,7 +31,7 @@ what I mean).
 ## Running
 
 Start from either command line or icon.
-Once started, press 'h' to see the various keyboard controls.  Or press
+*Once started, press 'h' to see the various keyboard controls.*  Or press
 '0' through '9', '-', or 'a' to go to preset areas of the fractals.  To zoom,
 press either 'z' for zoom by opposing corners or 'x' for zoom by center to
 corner.  Then click (and hold) left mouse button to select first point and
@@ -84,7 +84,7 @@ Visual Studio).
 <tr><td>fractal.ico</td><td>Icon file</td></tr>
 <tr><td>fractal.mak</td><td>Makefile</td></tr>
 <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
-<tr><td>fractalb.asm</td><td>My original fractal program for my CPU design</td></tr>
+<tr><td>fractalb_not_x86.asm</td><td>My original fractal program for my CPU design</td></tr>
 <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
 <tr><td>fractald.exe</td><td>32-bit Windows executable (double version)</td></tr>
 <tr><td>fractalf.exe</td><td>32-bit Windows executable (float version)</td></tr>
