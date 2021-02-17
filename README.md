@@ -31,7 +31,7 @@ what I mean).
 ## Running
 
 Start from either command line or icon.
-*Once started, press 'h' to see the various keyboard controls.*  Or press
+**Once started, press 'h' to see the various keyboard controls.**  Or press
 '0' through '9', '-', or 'a' to go to preset areas of the fractals.  To zoom,
 press either 'z' for zoom by opposing corners or 'x' for zoom by center to
 corner.  Then click (and hold) left mouse button to select first point and
